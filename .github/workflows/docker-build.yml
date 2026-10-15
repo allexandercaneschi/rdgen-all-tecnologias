@@ -10,6 +10,8 @@ on:
 
 jobs:
   build:
+    # So roda onde o Docker Hub estiver configurado (no fork da ALL a imagem vai para o GHCR: docker-ghcr.yml)
+    if: vars.DOCKERHUB_USERNAME != ''
     runs-on: ubuntu-latest
     steps:
       - name: set docker image tag
