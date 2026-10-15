@@ -13,7 +13,6 @@ services:
       GHBRANCH: "master"
       PROTOCOL: "https"
       REPONAME: "rdgen"
-      SH_SECRET: ""
     ports:
       - "8000:8000"
     dns:

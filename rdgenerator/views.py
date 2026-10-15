@@ -44,7 +44,10 @@ def generate_custom_client(params, full_url):
         On failure: includes 'error' and optionally 'status_code'.
     """
     user_secret = params.get('sh_secret_field', '')
-    selfhosted = (_settings.SH_SECRET == user_secret)
+    # So usa o runner proprio (self-hosted) quando SH_SECRET esta definido e confere.
+    # Sem isso, SH_SECRET vazio + campo vazio no formulario = sempre self-hosted,
+    # e o build fica na fila para sempre esperando um runner que nao existe.
+    selfhosted = bool(_settings.SH_SECRET) and (_settings.SH_SECRET == user_secret)
     platform = params.get('platform', 'windows')
     version = params.get('version', '1.4.9')
     delayFix = params.get('delayFix', True)
