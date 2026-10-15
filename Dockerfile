@@ -7,7 +7,10 @@ WORKDIR /opt/rdgen
 
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt \
- && python manage.py migrate
+ && python manage.py migrate \
+ && mkdir -p exe png temp_zips
+# As pastas acima ja existem na imagem com dono "user": assim volumes nomeados
+# montados nelas herdam a permissao de escrita (sem isso o gerador da erro 500).
 
 ENV PYTHONUNBUFFERED=1
 
