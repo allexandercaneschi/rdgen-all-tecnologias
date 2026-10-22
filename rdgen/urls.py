@@ -18,6 +18,7 @@ import django
 
 from rdgenerator import views as views
 from rdgenerator import api_views as api_views
+from rdgenerator import builds_views as builds_views
 if django.__version__.split('.')[0]>='4':
     from django.urls import re_path as url
 else:
@@ -38,4 +39,9 @@ urlpatterns = [
     # JSON API endpoints
     url(r'^api/generate$',api_views.api_generate),
     url(r'^api/status$',api_views.api_status),
+    # Builds geradas (ALL Tecnologias)
+    url(r'^builds/?$',builds_views.builds),
+    url(r'^builds/(?P<uid>[0-9a-fA-F-]{36})/excluir/?$',builds_views.builds_excluir),
+    url(r'^builds/(?P<uid>[0-9a-fA-F-]{36})/(?P<nome>[\w.-]+)$',builds_views.builds_baixar),
+    url(r'^latest/(?P<nome>[\w.-]+)$',builds_views.latest),
 ]
