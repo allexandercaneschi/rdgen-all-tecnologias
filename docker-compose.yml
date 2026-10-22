@@ -14,6 +14,11 @@ services:
       PROTOCOL: "https"
       REPONAME: "rdgen"
       SH_SECRET: ""
+      # Painel /builds (lista e baixa as builds geradas). Sem senha, o painel fica desativado.
+      BUILDS_USER: "admin"
+      BUILDS_PASSWORD: ""
+      # Links publicos /latest/<arquivo> (sempre a ultima versao). "false" desativa.
+      LATEST_ENABLED: "true"
     ports:
       - "8000:8000"
     dns:
